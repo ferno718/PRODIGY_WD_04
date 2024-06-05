@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+   margin: 0; 
+   padding: 0;
+   font-family: Poppins;
+   box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(img/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.cont{
+    position: relative;
+    width: 400px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(30px);
+    border: 5px solid rgba(255, 255, 255, .2);
+    border-radius: 15px;
+    padding: 20px;
+    color: black;
+    transition: height .5s ease;
+}
+.searchbox{
+    position: relative;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.searchbox i{
+    position: absolute;
+    left: 10px;
+    font-size: medium;
+}
+.searchbox input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 3px solid teal;
+    outline: none;
+    border-radius: 10px;
+    font-size: medium;
+    color: black;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 0 50px 0 50px;
+}
+.searchbox input::placeholder{
+    color: #696969;
+    text-transform: capitalize;
+}
+.searchbox button{
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: medium;
+    color: black;
+    padding: 0 40px 0 5px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.searchbox button:hover{
+    transform: scale(1.2);
+}
+.weatherbox{
+    text-align: center;
+    margin: 40px 0;
+}
+.weatherbox,
+.weatherdetails,
+.notfound{
+    overflow: hidden;
+    visibility: hidden;
+}
+.weatherbox.active,
+.weatherdetails.active,
+.notfound.active{
+    visibility: visible;
+}
+.weatherbox .box,
+.notfound .box{
+   transform: translateY(-100%); 
+}
+.weatherbox.active .box,
+.notfound.active .box{
+   transform: translateY(0%); 
+   transition: transform 1.2s ease;
+   transition-delay: .5s;
+}
+.weatherbox .box .weatherinfo{
+   transform: translateY(-120%); 
+}
+.cont.active .weatherbox .box .weatherinfo,
+.cont.active .weatherdetails .humidity .humidityinfo,
+.cont.active .weatherdetails .wind .windinfo{
+    transform: translateY(0%);
+    transition: transform 1s ease;
+}
+.weatherbox img{
+    width: 60%;
+}
+.weatherbox .temp{
+    position: relative;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 700;
+    margin: 20px 0 6px -30px;
+}
+.weatherbox .temp span{
+   position: absolute; 
+   font-size: 30px;
+   margin-left: 4px;
+}
+.weatherbox .desc{
+    font-size: large;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.weatherdetails{
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+}
+.weatherdetails .humidity,
+.weatherdetails .wind{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    transform: translateY(-100%);
+}
+.weatherdetails.active .humidity,
+.weatherdetails.active .wind{
+    transform: translateY(0%);
+    transition: transform 1.2s ease;
+    transition-delay: 1s;
+}
+.weatherdetails .humidity .humidityinfo,
+.weatherdetails .wind .windinfo{
+    transform: translateY(-100%);
+    overflow: hidden;
+}
+.weatherdetails .humidity{
+    padding-left: 20px;
+    justify-content: flex-start;
+}
+.weatherdetails .wind{
+    padding-left: 20px;
+    justify-content: flex-end;
+}
+.weatherdetails i{
+    font-size: 50px;
+    margin-right: 10px;
+}
+.weatherdetails span{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+}
+.weatherdetails p{
+    font-size: small;
+    font-weight: 500;
+
+}
+.notfound{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 110px;
+}
+.notfound img{
+    width: 65%;
+}
+.notfound p{
+    font-size: medium;
+    font-weight: 500;
+    margin-top: 12px;
+}
+.cityhide{
+    display: none;
+}
+
+#cloneweatherinfo,
+#clonehumidityinfo,
+#clonewindinfo{
+    position: absolute;
+    transform: translateY(-100%);
+}
+#cloneweatherinfo .weather{
+    transform: translateY(120%);
+    transition: transform 1s ease, opacity 0s;
+    transition-delay: 0s, 2s;
+}
+.weatherbox:not(.active) #cloneweatherinfo .weather{
+    opacity: 0;
+    transition-delay: 0s;
+}
+.activeclone#cloneweatherinfo .weather{
+    transform: translateY(0%);
+}
+#clonehumidityinfo span,
+#clonewindinfo span{
+    transform: translateY(100%);
+    transition: transform 1s ease;
+}
+.activeclone#clonehumidityinfo span,
+.activeclone#clonewindinfo span{
+    transform: translateY(0%);
+}
